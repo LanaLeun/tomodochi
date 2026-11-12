@@ -1,40 +1,37 @@
 const thework = document.getElementById("thework")
 const button = document.getElementById("button")
 const result = document.getElementById("result")
-let food = false
-let game = false
-let dreem = false
+let food = 0
+let game = 0
+
 
 button.addEventListener('click', () => {
     const w = thework.value
 
     if (w === "eat") {
-        if (food) {
-            result.innerHTML = "Он сытый, поиграй с ним"
-        } else {
+        if (food === 0) {
             result.innerHTML = "Ты покормил егооо"
-            food = true
-            game = false
-            dreem = false
-        } 
+            food = 1
+            game = 0
+        } else {
+            result.innerHTML = "Он сытый"
+        }
 
     } else if (w === "play") {
-        if (game) {
-            result.innerHTML = "Он устал, покорми его"
-        } else {
+        if (game === 0) {
             result.innerHTML = "Ты поиграл с ним"
-            game = true
-            food = false
-            dreem = false
+            game = 1
+            food = 0
+        } else {
+            result.innerHTML = "Он устал"
         }
     } else if (w === "sleep") {
-        if (dreem) {
-            result.innerHTML = "Он выспался"
-        } else {
+        if (game === 1 || food === 1) {
             result.innerHTML = "Ты уложил его спать"
-            dreem = true
-            game = false
-            food = false
+            food = 0
+            game = 0
+        } else {
+            result.innerHTML = "Он не хочет спать"
         }
     }
 })
